@@ -30,10 +30,18 @@ class Game(models.Model):
     initial_release_date = models.DateField()
     description = models.CharField(max_length=1000)
     studio = models.ForeignKey(Studio, on_delete=models.CASCADE)
-    plataform = models.ForeignKey(Plataform, on_delete=models.CASCADE)
     sales = models.IntegerField()
-    genre = models.ForeignKey(Genre, on_delete=models.CASCADE)
     price = models.DecimalField(max_digits=6, decimal_places=2)
     image = models.ImageField()
     def __str__(self):
         return self.name
+
+class GamePlataform(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    game = models.ForeignKey(Game, on_delete=models.CASCADE)
+    plataform = models.ForeignKey(Plataform, on_delete=models.CASCADE)
+
+class GameGenre(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    game = models.ForeignKey(Game, on_delete=models.CASCADE)
+    genre = models.ForeignKey(Genre, on_delete=models.CASCADE)
