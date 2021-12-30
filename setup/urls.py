@@ -31,4 +31,6 @@ router.register('gameGenre', GameGenreViewSet, basename='gameGenre')
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(router.urls)),
+    path('game/<uuid:pk>/plataforms/', ListPlataformGame.as_view()),
+    path('game/<uuid:pk>/genre/', ListGenreGame.as_view()),
 ]
