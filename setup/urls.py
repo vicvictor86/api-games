@@ -15,7 +15,22 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.urls.conf import include
+from games.views import *
+from rest_framework import routers
+
+router = routers.DefaultRouter()
+router.register('game', GameViewSet, basename='game')
+router.register('plataform', PlataformViewSet, basename='plataform')
+router.register('studio', StudioViewSet, basename='studio')
+router.register('genre', GenreViewSet, basename='genre')
+router.register('gamePlataform', GamePlataformViewSet, basename='gamePlataform')
+router.register('gameGenre', GameGenreViewSet, basename='gameGenre')
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', include(router.urls)),
+    path('game/<uuid:pk>/plataforms/', ListPlataformGame.as_view()),
+    path('game/<uuid:pk>/genre/', ListGenreGame.as_view()),
 ]
