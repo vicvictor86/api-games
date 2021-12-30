@@ -22,12 +22,15 @@ class GenreSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class GamePlataformSerializer(serializers.ModelSerializer):
+    game = serializers.ReadOnlyField(source='game.name')
+    plataform = serializers.ReadOnlyField(source='plataform.name')
     class Meta:
         model = GamePlataform
         fields = '__all__'
 
 class GameGenreSerializer(serializers.ModelSerializer):
+    game = serializers.ReadOnlyField(source='game.name')
+    genre = serializers.ReadOnlyField(source='genre.name')
     class Meta:
         model = GameGenre
         fields = '__all__'
-
