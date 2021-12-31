@@ -26,6 +26,7 @@ router.register('studio', StudioViewSet, basename='studio')
 router.register('genre', GenreViewSet, basename='genre')
 router.register('gamePlataform', GamePlataformViewSet, basename='gamePlataform')
 router.register('gameGenre', GameGenreViewSet, basename='gameGenre')
+router.register('listfullgames', ListFullGames, basename='listfullgames')
 
 
 urlpatterns = [

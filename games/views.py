@@ -86,4 +86,10 @@ class ListGenreGame(generics.ListAPIView):
         queryset = GameGenre.objects.filter(genre_id=self.kwargs['pk'])
         return queryset
     serializer_class = GameGenreSerializer
-    
+
+class ListFullGames(viewsets.ModelViewSet):
+    """Mostrará todas as informações disponíveis para os jogos"""
+    queryset = Game.objects.prefetch_related('plataforms')
+    queryset = Game.objects.prefetch_related('genres')
+    print(queryset.query)
+    serializer_class = GameFullInformationsSerializer

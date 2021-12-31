@@ -34,3 +34,10 @@ class GameGenreSerializer(serializers.ModelSerializer):
     class Meta:
         model = GameGenre
         fields = '__all__'
+
+class GameFullInformationsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Game
+        fields = ['id', 'name', 'plataforms', 'genres']
+    plataforms = GamePlataformSerializer(many=True)
+    genres = GameGenreSerializer(many=True)
