@@ -91,5 +91,4 @@ class ListFullGames(viewsets.ModelViewSet):
     """Mostrará todas as informações disponíveis para os jogos"""
     queryset = Game.objects.prefetch_related('plataforms')
     queryset = Game.objects.prefetch_related('genres')
-    print(queryset.query)
     serializer_class = GameFullInformationsSerializer

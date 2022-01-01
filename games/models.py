@@ -32,7 +32,7 @@ class Game(models.Model):
     studio = models.ForeignKey(Studio, on_delete=models.CASCADE)
     sales = models.IntegerField()
     price = models.DecimalField(max_digits=6, decimal_places=2)
-    image = models.ImageField(upload_to='myphotos/%d/%m%Y', blank=True)
+    image = models.ImageField(upload_to='games' ,blank=True)
     def __str__(self):
         return self.name
 
@@ -47,3 +47,6 @@ class GameGenre(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     game = models.ForeignKey(Game, on_delete=models.CASCADE, related_name='genres')
     genre = models.ForeignKey(Genre, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.genre.name

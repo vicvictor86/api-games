@@ -18,6 +18,8 @@ from django.urls import path
 from django.urls.conf import include
 from games.views import *
 from rest_framework import routers
+from django.conf import settings
+from django.conf.urls.static import static
 
 router = routers.DefaultRouter()
 router.register('game', GameViewSet, basename='game')
@@ -28,10 +30,9 @@ router.register('gamePlataform', GamePlataformViewSet, basename='gamePlataform')
 router.register('gameGenre', GameGenreViewSet, basename='gameGenre')
 router.register('listfullgames', ListFullGames, basename='listfullgames')
 
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(router.urls)),
     path('game/<uuid:pk>/plataforms/', ListPlataformGame.as_view()),
     path('game/<uuid:pk>/genre/', ListGenreGame.as_view()),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
