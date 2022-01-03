@@ -131,3 +131,6 @@ dmypy.json
 
 #Contents additional
 mysecrets.py
+
+uploads/*
+!uploads/games
